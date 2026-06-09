@@ -1,1 +1,656 @@
-<h1 style="color: red;"> hi, im rithwan aden. welcome to my website. </h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Rithwan Mohamed Aden</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Jost', sans-serif; background: #0f0d0a; color: #f5ede0; overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1rem 2.5rem;
+    background: rgba(15,13,10,0.97); backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(196,133,90,0.15);
+  }
+  .nav-name { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 300; color: #c4855a; letter-spacing: 0.02em; cursor: pointer; }
+  .nav-tabs { display: flex; gap: 0.2rem; list-style: none; }
+  .nav-tabs button {
+    font-family: 'Jost', sans-serif; font-size: 0.85rem; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase; color: rgba(245,237,224,0.45);
+    background: none; border: none; border-bottom: 1.5px solid transparent;
+    cursor: pointer; padding: 0.5rem 1rem;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .nav-tabs button:hover { color: #c4855a; }
+  .nav-tabs button.active { color: #c4855a; border-bottom-color: #b5451b; }
+
+  /* TABS */
+  .tab-page { display: none; padding-top: 4rem; }
+  .tab-page.active { display: block; }
+
+  /* SHARED */
+  .divider { height: 1px; background: rgba(196,133,90,0.12); }
+  .section { padding: 2.5rem 3rem; background: #0f0d0a; }
+  .section.alt { background: #130f0b; }
+  .lbl { font-size: 12px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: #c4855a; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px; }
+  .lbl::before { content:''; width:18px; height:1px; background:#c4855a; }
+  .stitle { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 300; color: #f5ede0; margin-bottom: 1.5rem; line-height: 1.15; }
+  .stitle em { font-style: italic; color: #c4855a; }
+  .sbody { font-size: 15px; font-weight: 300; line-height: 1.85; color: rgba(245,237,224,0.55); margin-bottom: 0.8rem; max-width: 65ch; }
+
+  /* BANNER */
+  .banner { position: relative; height: 260px; overflow: hidden; }
+  .banner img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; filter: sepia(15%) brightness(0.45) contrast(1.1); display: block; }
+  .banner-text { position: absolute; bottom: 2rem; left: 3rem; }
+  .banner-label { font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: #c4855a; margin-bottom: 0.4rem; display: flex; align-items: center; gap: 8px; }
+  .banner-label::before { content:''; width:20px; height:1px; background:#c4855a; }
+  .banner-title { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 300; color: #f5ede0; line-height: 1.1; }
+  .banner-title em { font-style: italic; color: #c4855a; }
+
+  /* HERO */
+  .hero { display: grid; grid-template-columns: 1fr 1fr; min-height: calc(100vh - 4rem); }
+  .hero-left { padding: 4rem 3rem; display: flex; flex-direction: column; justify-content: center; background: #0f0d0a; }
+  .hero-tag { font-size: 10px; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase; color: #c4855a; margin-bottom: 1.2rem; display: flex; align-items: center; gap: 10px; }
+  .hero-tag::before { content:''; width:24px; height:1px; background:#c4855a; flex-shrink:0; }
+  .hero-name { font-family: 'Cormorant Garamond', serif; font-size: clamp(3.5rem,6vw,6rem); font-weight: 300; line-height: 1.05; color: #f5ede0; margin-bottom: 1.2rem; }
+  .hero-name em { font-style: italic; color: #c4855a; }
+  .hero-desc { font-size: 15px; font-weight: 300; line-height: 1.9; color: rgba(245,237,224,0.55); max-width: 36ch; margin-bottom: 2rem; }
+  .hero-btns { display: flex; gap: 8px; flex-wrap: wrap; }
+  .btn-p { padding: 0.55rem 1.4rem; font-size: 10px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; background: #b5451b; color: #f5ede0; border: none; cursor: pointer; font-family: 'Jost', sans-serif; transition: background 0.2s; }
+  .btn-p:hover { background: #d4622a; }
+  .btn-s { padding: 0.55rem 1.4rem; font-size: 10px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; background: transparent; color: #c4855a; border: 1px solid rgba(196,133,90,0.4); cursor: pointer; font-family: 'Jost', sans-serif; transition: background 0.2s; }
+  .btn-s:hover { background: rgba(196,133,90,0.08); }
+  .hero-photo { overflow: hidden; position: relative; background: #1a1410; }
+  .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; filter: sepia(8%) contrast(1.05); display: block; }
+  .hero-photo::after { content:''; position:absolute; inset:0; background: linear-gradient(to right, #0f0d0a 0%, transparent 25%); }
+
+  /* TWO COL */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(196,133,90,0.1); }
+  .two-col-panel { padding: 2.5rem 3rem; background: #0f0d0a; }
+  .two-col-panel.alt { background: #130f0b; }
+
+  /* CARDS */
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px,1fr)); gap: 1px; background: rgba(196,133,90,0.1); }
+  .card { background: #0f0d0a; padding: 1.6rem; border-top: 2px solid transparent; transition: border-color 0.2s, background 0.2s; }
+  .card:hover { border-top-color: #b5451b; background: #130f0b; }
+  .card-org { font-size: 10px; font-weight: 500; letter-spacing: 0.13em; text-transform: uppercase; color: #c4855a; margin-bottom: 0.3rem; }
+  .card-title { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: #f5ede0; margin-bottom: 0.2rem; }
+  .card-period { font-size: 13px; color: rgba(245,237,224,0.3); margin-bottom: 0.9rem; }
+  .card ul { list-style: none; padding: 0; }
+  .card li { font-size: 14px; font-weight: 300; color: rgba(245,237,224,0.55); line-height: 1.7; padding-left: 1rem; position: relative; margin-bottom: 0.35rem; }
+  .card li::before { content:'›'; position:absolute; left:0; color:#c4855a; }
+  .courses { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 0.8rem; }
+  .course-pill { font-size: 11px; padding: 3px 12px; border: 0.5px solid rgba(196,133,90,0.25); color: rgba(245,237,224,0.45); }
+
+  /* STACKED LIST */
+  .stacked { display: flex; flex-direction: column; gap: 1px; background: rgba(196,133,90,0.1); }
+  .stacked-item { background: #0f0d0a; padding: 1.6rem; display: grid; grid-template-columns: 2.5rem 1fr; gap: 1rem; align-items: start; transition: background 0.2s; }
+  .stacked-item:hover { background: #130f0b; }
+  .s-dot { width: 8px; height: 8px; border-radius: 50%; background: #b5451b; margin-top: 5px; justify-self: center; }
+  .s-org { font-size: 10px; font-weight: 500; letter-spacing: 0.13em; text-transform: uppercase; color: #c4855a; margin-bottom: 0.2rem; }
+  .s-title { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: #f5ede0; margin-bottom: 0.2rem; }
+  .s-period { font-size: 13px; color: rgba(245,237,224,0.3); margin-bottom: 0.45rem; }
+  .s-desc { font-size: 14px; font-weight: 300; color: rgba(245,237,224,0.5); line-height: 1.75; }
+
+  /* PROJECTS */
+  .projects { display: flex; flex-direction: column; gap: 1px; background: rgba(196,133,90,0.1); }
+  .project { background: #130f0b; padding: 1.5rem; display: grid; grid-template-columns: 1fr auto; gap: 1rem; align-items: start; transition: background 0.2s; }
+  .project:hover { background: #1a1410; }
+  .p-tag { font-size: 10px; font-weight: 500; letter-spacing: 0.13em; text-transform: uppercase; color: #c4855a; margin-bottom: 0.2rem; }
+  .p-title { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: #f5ede0; margin-bottom: 0.3rem; }
+  .p-desc { font-size: 14px; font-weight: 300; color: rgba(245,237,224,0.5); line-height: 1.75; }
+  .p-badge { font-size: 10px; padding: 3px 10px; border: 0.5px solid rgba(196,133,90,0.35); color: #c4855a; white-space: nowrap; align-self: start; margin-top: 4px; }
+
+  /* PILLS */
+  .pill-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 1rem; }
+  .pill { font-size: 11px; padding: 4px 14px; border: 0.5px solid rgba(196,133,90,0.25); color: rgba(245,237,224,0.5); }
+
+  /* SKILLS GRID */
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px,1fr)); gap: 1px; background: rgba(196,133,90,0.1); margin-top: 1.5rem; }
+  .skill { background: #0f0d0a; padding: 1.2rem 1.4rem; }
+  .skill-icon { font-size: 20px; color: #c4855a; margin-bottom: 0.5rem; }
+  .skill-name { font-size: 14px; font-weight: 300; color: rgba(245,237,224,0.65); }
+
+  /* RESEARCH META */
+  .meta-row { display: flex; flex-wrap: wrap; gap: 1px; background: rgba(196,133,90,0.1); margin-bottom: 2rem; }
+  .meta-item { background: #0f0d0a; padding: 1rem 1.4rem; flex: 1; min-width: 130px; }
+  .m-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #c4855a; margin-bottom: 0.3rem; }
+  .m-value { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: #f5ede0; }
+  .findings { display: flex; flex-direction: column; gap: 1px; background: rgba(196,133,90,0.1); margin-top: 1.5rem; }
+  .finding { background: #0f0d0a; padding: 1.4rem 1.6rem; display: grid; grid-template-columns: 2rem 1fr; gap: 1rem; align-items: start; }
+  .finding:hover { background: #130f0b; }
+  .f-num { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-style: italic; color: rgba(196,133,90,0.4); padding-top: 2px; }
+  .f-title { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; color: #f5ede0; margin-bottom: 0.3rem; }
+  .f-desc { font-size: 14px; font-weight: 300; color: rgba(245,237,224,0.5); line-height: 1.75; }
+  .quote-block { border-left: 2px solid #b5451b; padding: 1rem 1.5rem; margin-top: 1.5rem; }
+  .quote-text { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-style: italic; font-weight: 300; color: rgba(245,237,224,0.7); line-height: 1.7; }
+
+  /* ROLES */
+  .roles { display: flex; flex-direction: column; gap: 1px; background: rgba(196,133,90,0.1); }
+  .role { background: #0f0d0a; padding: 1.6rem; display: grid; grid-template-columns: 3rem 1fr; gap: 1.2rem; align-items: start; transition: background 0.2s; }
+  .role:hover { background: #130f0b; }
+  .role-icon { width: 36px; height: 36px; border: 0.5px solid rgba(196,133,90,0.3); display: flex; align-items: center; justify-content: center; color: #c4855a; font-size: 16px; flex-shrink: 0; }
+
+  /* CLUBS */
+  .clubs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 1px; background: rgba(196,133,90,0.1); margin-top: 1.5rem; }
+  .club { background: #0f0d0a; padding: 1.1rem 1.4rem; display: flex; align-items: center; gap: 0.8rem; transition: background 0.2s; }
+  .club:hover { background: #130f0b; }
+  .club-dot { width: 6px; height: 6px; border-radius: 50%; background: #b5451b; flex-shrink: 0; }
+  .club-name { font-size: 12px; font-weight: 300; color: rgba(245,237,224,0.6); line-height: 1.4; }
+
+  /* FUN SECTION */
+  .facts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 1px; background: rgba(196,133,90,0.1); }
+  .fact { background: #0f0d0a; padding: 1.4rem; transition: background 0.2s; }
+  .fact:hover { background: #130f0b; }
+  .fact-icon { font-size: 22px; color: #c4855a; margin-bottom: 0.6rem; }
+  .fact-title { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; color: #f5ede0; margin-bottom: 0.3rem; }
+  .fact-desc { font-size: 12px; font-weight: 300; color: rgba(245,237,224,0.5); line-height: 1.7; }
+  .funfact-banner { background: #130f0b; border-left: 2px solid #b5451b; padding: 1.2rem 1.6rem; margin-top: 1.5rem; }
+  .funfact-label { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: #c4855a; margin-bottom: 0.4rem; }
+  .funfact-text { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-style: italic; color: rgba(245,237,224,0.75); line-height: 1.6; }
+  .loves { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 1rem; }
+  .love-pill { font-size: 12px; padding: 5px 16px; border: 0.5px solid rgba(196,133,90,0.3); color: rgba(245,237,224,0.6); display: flex; align-items: center; gap: 6px; }
+  .love-pill i.ti { font-size: 14px; color: #c4855a; }
+
+  /* MOSAIC */
+  .mosaic-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; height: 240px; }
+  .mosaic-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px; height: 220px; }
+  .mosaic-2 img, .mosaic-3 img { width: 100%; height: 100%; object-fit: cover; filter: sepia(10%) brightness(0.75); display: block; transition: filter 0.3s; }
+  .mosaic-2 img:hover, .mosaic-3 img:hover { filter: sepia(0%) brightness(0.9); }
+
+  /* LANG */
+  .lang-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 1rem; }
+  .lang-pill { font-size: 11px; padding: 4px 14px; border: 0.5px solid rgba(196,133,90,0.3); color: rgba(245,237,224,0.5); }
+
+  /* FOOTER */
+  footer { background: #080604; color: rgba(245,237,224,0.2); padding: 1.5rem 3rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.7rem; letter-spacing: 0.05em; }
+
+  /* RESPONSIVE */
+  @media(max-width:900px) {
+    nav { padding: 1rem 1.5rem; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-photo { height: 60vw; }
+    .hero-left { padding: 3rem 1.5rem 2rem; }
+    .section { padding: 2rem 1.5rem; }
+    .two-col { grid-template-columns: 1fr; }
+    .two-col-panel { padding: 2rem 1.5rem; }
+    .banner-text { left: 1.5rem; }
+    footer { flex-direction: column; gap: 0.4rem; text-align: center; padding: 1.2rem; }
+  }
+  @media(max-width:600px) {
+    .nav-tabs button { padding: 0.5rem 0.6rem; font-size: 0.65rem; }
+    .card-grid { grid-template-columns: 1fr; }
+    .mosaic-3 { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-name" onclick="showTab('me')">Rithwan Mohamed Aden</span>
+  <ul class="nav-tabs">
+    <li><button onclick="showTab('me')" id="tab-me" class="active">Me</button></li>
+    <li><button onclick="showTab('cs')" id="tab-cs">CS</button></li>
+    <li><button onclick="showTab('biomed')" id="tab-biomed">Biomedical</button></li>
+    <li><button onclick="showTab('research')" id="tab-research">Research</button></li>
+    <li><button onclick="showTab('community')" id="tab-community">Community</button></li>
+  </ul>
+</nav>
+
+<!-- ══════════════ ME ══════════════ -->
+<div id="page-me" class="tab-page active">
+
+  <div class="hero">
+    <div class="hero-left">
+      <div class="hero-tag">Dartmouth College · Class of 2029</div>
+      <h1 class="hero-name">Rithwan<br><em>Mohamed</em><br>Aden</h1>
+      <p class="hero-desc">Passionate about education, technology, and health — building solutions at the intersection of all three for communities that need them most.</p>
+      <div class="hero-btns">
+        <button class="btn-p" onclick="showTab('cs')">CS</button>
+        <button class="btn-s" onclick="showTab('biomed')">Biomedical</button>
+        <button class="btn-s" onclick="showTab('community')">Community</button>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <img src="WhatsApp_Image_2026-06-08_at_15_10_30.jpeg" alt="Rithwan on Dartmouth campus">
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="two-col">
+    <div class="two-col-panel">
+      <div class="lbl">About me</div>
+      <h2 class="stitle">Engineer.<br>Researcher.<br><em>Advocate.</em></h2>
+      <p class="sbody">Originally from Garissa, Kenya, I am a first-year student at Dartmouth College pursuing Biomedical Engineering with a minor in Computer Science.</p>
+      <p class="sbody">I believe that education, technology, and health are inseparable — and that the communities most in need deserve solutions built with them, not just for them.</p>
+    </div>
+    <div class="two-col-panel alt">
+      <div class="lbl">Languages</div>
+      <h2 class="stitle" style="font-size:1.4rem;">Fluent in<br><em>four languages</em></h2>
+      <p class="sbody">Bringing a global perspective rooted in East Africa to every project at Dartmouth and beyond.</p>
+      <div class="lang-row">
+        <span class="lang-pill">English</span>
+        <span class="lang-pill">Swahili</span>
+        <span class="lang-pill">Somali</span>
+        <span class="lang-pill">Arabic</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="mosaic-3">
+    <img src="WhatsApp_Image_2026-06-08_at_15_10_31.jpeg" alt="Lincoln Memorial">
+    <img src="WhatsApp_Image_2026-06-08_at_15_10_32__3_.jpeg" alt="World Bank">
+    <img src="WhatsApp_Image_2026-06-08_at_15_10_32.jpeg" alt="Snow angel">
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section">
+    <div class="lbl">Education &amp; Leadership</div>
+    <h2 class="stitle">Shaped by <em>purpose</em></h2>
+    <div class="stacked">
+      <div class="stacked-item">
+        <div class="s-dot"></div>
+        <div>
+          <div class="s-org">UMU Youth Organization · Garissa, Kenya</div>
+          <div class="s-title">Founder &amp; CEO</div>
+          <div class="s-period">Nov 2023 – Present</div>
+          <div class="s-desc">Founded and lead a youth organization advocating for girls' education and women's rights in underserved communities. Led campaigns against FGM through seminars, community outreach, and awareness programs.</div>
+        </div>
+      </div>
+      <div class="stacked-item">
+        <div class="s-dot"></div>
+        <div>
+          <div class="s-org">Zaari — Quality Learning Access App</div>
+          <div class="s-title">Founder &amp; CEO</div>
+          <div class="s-period">Ongoing</div>
+          <div class="s-desc">Building Zaari, an app designed to bridge the digital learning gap by connecting students in underserved communities with quality educational resources and tools.</div>
+        </div>
+      </div>
+      <div class="stacked-item">
+        <div class="s-dot"></div>
+        <div>
+          <div class="s-org">Davis Project for Peace · Garissa, Kenya</div>
+          <div class="s-title">Grant Recipient — Digital Access Initiative</div>
+          <div class="s-period">Feb 2026 – Present</div>
+          <div class="s-desc">Awarded a competitive Davis Project for Peace grant, working with CBC students to provide laptops, computers, and digital resources to bridge the technology gap in Garissa.</div>
+        </div>
+      </div>
+      <div class="stacked-item">
+        <div class="s-dot"></div>
+        <div>
+          <div class="s-org">KenSAP · Kenya Scholars Access Program</div>
+          <div class="s-title">KenSAP Scholar</div>
+          <div class="s-period">June 2024 – June 2026</div>
+          <div class="s-desc">Selected for one of Africa's most prestigious college access programs, supporting high-achieving, low-income Kenyan students in gaining admission to elite North American universities.</div>
+        </div>
+      </div>
+      <div class="stacked-item">
+        <div class="s-dot"></div>
+        <div>
+          <div class="s-org">Umusalama Girls' Secondary School · Garissa, Kenya</div>
+          <div class="s-title">Chemistry &amp; Biology Tutor</div>
+          <div class="s-period">Jan – May 2024</div>
+          <div class="s-desc">Taught foundational biology and chemistry to over 400 students, reinforcing scientific reasoning and preparing them for national examinations.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section alt">
+    <div class="lbl">A little about me</div>
+    <h2 class="stitle">Beyond the <em>résumé</em></h2>
+    <div class="facts-grid">
+      <div class="fact"><div class="fact-icon"><i class="ti ti-trees" aria-hidden="true"></i></div><div class="fact-title">Nature lover</div><div class="fact-desc">Happiest when I'm outside — fresh air, open skies, and green spaces restore me like nothing else.</div></div>
+      <div class="fact"><div class="fact-icon"><i class="ti ti-stethoscope" aria-hidden="true"></i></div><div class="fact-title">Future doctor</div><div class="fact-desc">Pre-med is the dream. I want to combine engineering and medicine to serve patients in communities like the one I grew up in.</div></div>
+      <div class="fact"><div class="fact-icon"><i class="ti ti-books" aria-hidden="true"></i></div><div class="fact-title">Dartmouth Stacks fan</div><div class="fact-desc">Baker-Berry Library's stacks are my happy place on campus — something about being surrounded by all those books just hits different.</div></div>
+      <div class="fact"><div class="fact-icon"><i class="ti ti-cup" aria-hidden="true"></i></div><div class="fact-title">Boba obsessed</div><div class="fact-desc">Strawberry boba and milkshake boba are non-negotiable. If you want to be my friend, boba is a good start.</div></div>
+      <div class="fact"><div class="fact-icon"><i class="ti ti-user" aria-hidden="true"></i></div><div class="fact-title">Only child</div><div class="fact-desc">Rare in Garissa — I'm the only kid in my family, which makes me equal parts independent and very spoiled (allegedly).</div></div>
+      <div class="fact"><div class="fact-icon"><i class="ti ti-map-pin" aria-hidden="true"></i></div><div class="fact-title">From Garissa, Kenya</div><div class="fact-desc">Garissa shaped everything — my values, my drive, and my deep commitment to building for the communities I come from.</div></div>
+    </div>
+    <div class="funfact-banner">
+      <div class="funfact-label">Fun fact</div>
+      <div class="funfact-text">"Being an only child in Garissa is basically a plot twist — people are still recovering from the news."</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section">
+    <div class="lbl">Things I love</div>
+    <h2 class="stitle">What makes <em>me, me</em></h2>
+    <div class="loves">
+      <span class="love-pill"><i class="ti ti-trees"></i>Nature walks</span>
+      <span class="love-pill"><i class="ti ti-cup"></i>Strawberry boba</span>
+      <span class="love-pill"><i class="ti ti-cup"></i>Milkshake boba</span>
+      <span class="love-pill"><i class="ti ti-books"></i>The Stacks</span>
+      <span class="love-pill"><i class="ti ti-stethoscope"></i>Medicine</span>
+      <span class="love-pill"><i class="ti ti-world"></i>Traveling</span>
+      <span class="love-pill"><i class="ti ti-map-pin"></i>Garissa</span>
+      <span class="love-pill"><span style="width:12px;height:12px;background:#1a6fb5;border-radius:2px;display:inline-block;"></span>The color blue</span>
+    </div>
+  </div>
+
+  <footer>
+    <span>© 2026 Rithwan Mohamed Aden</span>
+    <span>Dartmouth College · Hanover, NH</span>
+  </footer>
+</div>
+
+<!-- ══════════════ CS ══════════════ -->
+<div id="page-cs" class="tab-page">
+  <div class="banner">
+    <img src="WhatsApp_Image_2026-06-08_at_15_10_32__3_.jpeg" alt="World Bank">
+    <div class="banner-text">
+      <div class="banner-label">Computer Science</div>
+      <div class="banner-title">Technology<br><em>with purpose</em></div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="section">
+    <div class="lbl">Experience</div>
+    <h2 class="stitle">Technical <em>work</em></h2>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-org">Evergreen AI · Hanover, NH</div>
+        <div class="card-title">Project Assistant — Mental Health AI</div>
+        <div class="card-period">Oct 2025 – April 2026 · Hybrid</div>
+        <ul>
+          <li>Trained AI systems focused on mental health awareness</li>
+          <li>Reviewed and entered structured dialogue data with accuracy</li>
+          <li>Supported quality control through documentation and revision</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-org">Dartmouth College</div>
+        <div class="card-title">Minor in Computer Science</div>
+        <div class="card-period">Sept 2025 – Present · Hanover, NH</div>
+        <ul>
+          <li>Applying computational thinking to biomedical problems</li>
+          <li>Exploring intersections of software, data, and health systems</li>
+        </ul>
+        <div style="margin-top:0.8rem;">
+          <div style="font-size:10px;color:#c4855a;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.4rem;">Courses taken</div>
+          <div class="courses">
+            <span class="course-pill">CS 1</span>
+            <span class="course-pill">CS 10</span>
+            <span class="course-pill">CS 50</span>
+            <span class="course-pill">CS 70</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="section alt">
+    <div class="lbl">Projects</div>
+    <h2 class="stitle">Built from <em>scratch</em></h2>
+    <div class="projects">
+      <div class="project">
+        <div>
+          <div class="p-tag">UMU Youth Organization</div>
+          <div class="p-title">Full-Stack Website</div>
+          <div class="p-desc">Designed and developed the complete UMU Youth Organization website — both front end and back end — to support advocacy for girls' education and community outreach in Garissa, Kenya.</div>
+        </div>
+        <span class="p-badge">Front + Back end</span>
+      </div>
+      <div class="project">
+        <div>
+          <div class="p-tag">Zaari — Quality Learning Access App</div>
+          <div class="p-title">Founder &amp; Developer</div>
+          <div class="p-desc">Building Zaari, a learning access app designed to connect students in underserved communities with quality digital educational resources, bridging the technology gap in East Africa.</div>
+        </div>
+        <span class="p-badge">In progress</span>
+      </div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="section">
+    <div class="lbl">Skills</div>
+    <h2 class="stitle">Technical <em>toolkit</em></h2>
+    <div class="skills-grid">
+      <div class="skill"><div class="skill-icon"><i class="ti ti-code" aria-hidden="true"></i></div><div class="skill-name">Programming</div></div>
+      <div class="skill"><div class="skill-icon"><i class="ti ti-database" aria-hidden="true"></i></div><div class="skill-name">Database management</div></div>
+      <div class="skill"><div class="skill-icon"><i class="ti ti-brain" aria-hidden="true"></i></div><div class="skill-name">AI data training</div></div>
+      <div class="skill"><div class="skill-icon"><i class="ti ti-device-laptop" aria-hidden="true"></i></div><div class="skill-name">Full-stack dev</div></div>
+      <div class="skill"><div class="skill-icon"><i class="ti ti-file-check" aria-hidden="true"></i></div><div class="skill-name">Data entry &amp; QC</div></div>
+      <div class="skill"><div class="skill-icon"><i class="ti ti-apps" aria-hidden="true"></i></div><div class="skill-name">Google Workspace</div></div>
+      <div class="skill"><div class="skill-icon"><i class="ti ti-table" aria-hidden="true"></i></div><div class="skill-name">Microsoft Office</div></div>
+      <div class="skill"><div class="skill-icon"><i class="ti ti-users" aria-hidden="true"></i></div><div class="skill-name">Collaborative problem-solving</div></div>
+    </div>
+  </div>
+  <footer>
+    <span>© 2026 Rithwan Mohamed Aden</span>
+    <span>Dartmouth College · Hanover, NH</span>
+  </footer>
+</div>
+
+<!-- ══════════════ BIOMEDICAL ══════════════ -->
+<div id="page-biomed" class="tab-page">
+  <div class="banner">
+    <img src="WhatsApp_Image_2026-06-08_at_15_10_19.jpeg" alt="Washington D.C.">
+    <div class="banner-text">
+      <div class="banner-label">Biomedical Engineering</div>
+      <div class="banner-title">Designing technology<br><em>that heals</em></div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="section">
+    <div class="lbl">Academic experience</div>
+    <h2 class="stitle">Research &amp; <em>study</em></h2>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-org">Dartmouth College</div>
+        <div class="card-title">B.A. Biomedical Engineering</div>
+        <div class="card-period">Sept 2025 – Present · Hanover, NH</div>
+        <ul>
+          <li>Engineering principles combined with biological sciences</li>
+          <li>Minor in Computer Science with applications to health informatics</li>
+          <li>Focus on equity-centered design for underserved communities</li>
+        </ul>
+        <div style="margin-top:0.8rem;">
+          <div style="font-size:10px;color:#c4855a;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.4rem;">Courses taken</div>
+          <div class="courses">
+            <span class="course-pill">Bio 12</span>
+            <span class="course-pill">Bio 14</span>
+            <span class="course-pill">Calculus III</span>
+            <span class="course-pill">Intro to Physics</span>
+            <span class="course-pill">Intro to Chemistry</span>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-org">Pioneer Academics · New York (Remote)</div>
+        <div class="card-title">Student Researcher — Biomedical Engineering</div>
+        <div class="card-period">Oct – Dec 2024</div>
+        <ul>
+          <li>Highly selective college-level research program on cancer and diabetes</li>
+          <li>Collaborated with a team of five to design biomedical interventions</li>
+          <li>Proposed low-cost medical device improvements for chronic disease management</li>
+          <li>Focus on improving treatment access for underserved communities</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="section alt">
+    <div class="lbl">Projects</div>
+    <h2 class="stitle">Built to <em>make an impact</em></h2>
+    <div class="projects">
+      <div class="project">
+        <div>
+          <div class="p-tag">Gylo — Patient-Doctor Translation App</div>
+          <div class="p-title">Founder &amp; Developer</div>
+          <div class="p-desc">Building Gylo, an app that bridges the language gap between patients and doctors in Garissa, Kenya — enabling real-time translation during medical consultations for communities where language barriers limit care.</div>
+        </div>
+        <span class="p-badge">In progress</span>
+      </div>
+      <div class="project">
+        <div>
+          <div class="p-tag">Arthritis Support Hardware</div>
+          <div class="p-title">Hardware Designer</div>
+          <div class="p-desc">Developing a low-cost hardware device to assist people living with arthritis — improving daily mobility and quality of life through accessible, affordable biomedical engineering.</div>
+        </div>
+        <span class="p-badge">In progress</span>
+      </div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="mosaic-2">
+    <img src="WhatsApp_Image_2026-06-08_at_15_10_31.jpeg" alt="Lincoln Memorial">
+    <img src="WhatsApp_Image_2026-06-08_at_15_10_29__1_.jpeg" alt="Campus">
+  </div>
+  <footer>
+    <span>© 2026 Rithwan Mohamed Aden</span>
+    <span>Dartmouth College · Hanover, NH</span>
+  </footer>
+</div>
+
+<!-- ══════════════ RESEARCH ══════════════ -->
+<div id="page-research" class="tab-page">
+  <div class="banner">
+    <img src="WhatsApp_Image_2026-06-08_at_15_10_30__1_.jpeg" alt="Research">
+    <div class="banner-text">
+      <div class="banner-label">Research</div>
+      <div class="banner-title">Asking hard<br><em>questions</em></div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="section">
+    <div class="lbl">Pioneer Academics</div>
+    <h2 class="stitle">Biomedical research on<br><em>cancer &amp; diabetes</em></h2>
+    <p class="sbody">Selected for Pioneer Academics — a highly competitive, college-level research program — to study disabling diseases including cancer and diabetes. Worked within a team of five to investigate biomedical engineering solutions with a focus on equity and access.</p>
+    <p class="sbody">The program challenged me to think rigorously about how cutting-edge science translates into real interventions for communities that have historically been left behind by medical innovation.</p>
+    <div class="meta-row">
+      <div class="meta-item"><div class="m-label">Program</div><div class="m-value">Pioneer Academics</div></div>
+      <div class="meta-item"><div class="m-label">Location</div><div class="m-value">New York (Remote)</div></div>
+      <div class="meta-item"><div class="m-label">Period</div><div class="m-value">Oct – Dec 2024</div></div>
+      <div class="meta-item"><div class="m-label">Team size</div><div class="m-value">5 researchers</div></div>
+    </div>
+    <div class="lbl">Key findings &amp; contributions</div>
+    <div class="findings">
+      <div class="finding"><div class="f-num">01</div><div><div class="f-title">Cancer &amp; diabetes systems study</div><div class="f-desc">Completed in-depth study of biological and systemic mechanisms behind cancer and diabetes, building a foundation in disease pathology and the engineering challenges of treatment design.</div></div></div>
+      <div class="finding"><div class="f-num">02</div><div><div class="f-title">Low-cost medical device proposals</div><div class="f-desc">Collaborated with a team of five to design and propose low-cost medical device improvements for chronic disease management — prioritizing affordability and accessibility for underserved communities.</div></div></div>
+      <div class="finding"><div class="f-num">03</div><div><div class="f-title">Equity-centered intervention design</div><div class="f-desc">Framed all proposals around access — who benefits from existing medical technology, and how engineering design choices can expand or restrict that access.</div></div></div>
+    </div>
+    <div class="quote-block">
+      <div class="quote-text">"The communities most in need of medical innovation are often the least represented in the research that produces it."</div>
+    </div>
+    <div class="pill-row">
+      <span class="pill">Cancer biology</span>
+      <span class="pill">Diabetes research</span>
+      <span class="pill">Medical device design</span>
+      <span class="pill">Equity in healthcare</span>
+      <span class="pill">Collaborative research</span>
+      <span class="pill">Low-cost interventions</span>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="mosaic-3">
+    <img src="WhatsApp_Image_2026-06-08_at_15_10_32__3_.jpeg" alt="World Bank">
+    <img src="WhatsApp_Image_2026-06-08_at_15_10_31.jpeg" alt="Lincoln Memorial">
+    <img src="WhatsApp_Image_2026-06-08_at_15_10_29.jpeg" alt="Campus">
+  </div>
+  <footer>
+    <span>© 2026 Rithwan Mohamed Aden</span>
+    <span>Dartmouth College · Hanover, NH</span>
+  </footer>
+</div>
+
+<!-- ══════════════ COMMUNITY ══════════════ -->
+<div id="page-community" class="tab-page">
+  <div class="banner">
+    <img src="WhatsApp_Image_2026-06-08_at_15_10_28.jpeg" alt="Garissa Kenya">
+    <div class="banner-text">
+      <div class="banner-label">Community Projects</div>
+      <div class="banner-title">Work that<br><em>matters</em></div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="section">
+    <div class="lbl">Leadership &amp; service</div>
+    <h2 class="stitle">Creating <em>pathways</em> for others</h2>
+    <p class="sbody">From co-founding a youth organization in Garissa to mentoring international students at Dartmouth, community work is at the core of everything I do.</p>
+    <div class="roles">
+      <div class="role">
+        <div class="role-icon"><i class="ti ti-building-community" aria-hidden="true"></i></div>
+        <div>
+          <div class="s-org">UMU Youth Organization · Garissa, Kenya</div>
+          <div class="s-title">Co-founder &amp; Chairperson</div>
+          <div class="s-period">Nov 2023 – Present</div>
+          <div class="s-desc">Founded and lead a youth organization advocating for girls' education and women's rights in underserved communities. Led local initiatives against Female Genital Mutilation through seminars, posters, and community outreach campaigns across Garissa.</div>
+        </div>
+      </div>
+      <div class="role">
+        <div class="role-icon"><i class="ti ti-device-laptop" aria-hidden="true"></i></div>
+        <div>
+          <div class="s-org">Davis Project for Peace · Garissa, Kenya</div>
+          <div class="s-title">Grant Recipient — Digital Access Initiative</div>
+          <div class="s-period">Feb 2026 – Present</div>
+          <div class="s-desc">Awarded a competitive Davis Project for Peace grant to work with CBC students — providing laptops, computers, and digital resources to bridge the technology gap in Garissa.</div>
+        </div>
+      </div>
+      <div class="role">
+        <div class="role-icon"><i class="ti ti-school" aria-hidden="true"></i></div>
+        <div>
+          <div class="s-org">Dartmouth International Student Experience Office</div>
+          <div class="s-title">Undergraduate International Student Mentor</div>
+          <div class="s-period">April 2026 – Present</div>
+          <div class="s-desc">Provide peer mentorship to international undergraduate students, supporting their academic, social, and cultural transition to Dartmouth. Foster an inclusive environment by building trust with students from diverse backgrounds.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="section alt">
+    <div class="lbl">Campus involvement</div>
+    <h2 class="stitle">Dartmouth <em>organizations</em></h2>
+    <p class="sbody">Active member of organizations reflecting my commitment to engineering, innovation, and community on campus.</p>
+    <div class="clubs-grid">
+      <div class="club"><div class="club-dot"></div><div class="club-name">Society of Women in Engineering (SWE)</div></div>
+      <div class="club"><div class="club-dot"></div><div class="club-name">Women in Innovation (WIN)</div></div>
+      <div class="club"><div class="club-dot"></div><div class="club-name">Dartmouth Emerging Engineers</div></div>
+      <div class="club"><div class="club-dot"></div><div class="club-name">Dartmouth African Student Association (DASA)</div></div>
+      <div class="club"><div class="club-dot"></div><div class="club-name">First Year Summer Enrichment Program</div></div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="mosaic-3">
+    <img src="WhatsApp_Image_2026-06-08_at_15_10_32.jpeg" alt="Snow angel">
+    <img src="WhatsApp_Image_2026-06-08_at_15_10_32__1_.jpeg" alt="Winter Carnival">
+    <img src="WhatsApp_Image_2026-06-08_at_15_10_30.jpeg" alt="Campus">
+  </div>
+  <footer>
+    <span>© 2026 Rithwan Mohamed Aden</span>
+    <span>Dartmouth College · Hanover, NH</span>
+  </footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" type="text/css"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<script>
+  function showTab(name) {
+    document.querySelectorAll('.tab-page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-tabs button').forEach(b => b.classList.remove('active'));
+    const page = document.getElementById('page-' + name);
+    if (page) page.classList.add('active');
+    const btn = document.getElementById('tab-' + name);
+    if (btn) btn.classList.add('active');
+    window.scrollTo(0, 0);
+  }
+</script>
+</body>
+</html>
