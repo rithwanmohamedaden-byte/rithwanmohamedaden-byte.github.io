@@ -723,13 +723,13 @@
   <div class="divider"></div>
 
   <div class="section alt">
-    <div class="lbl">Davis Project for Peace · Gallery</div>
+    <div class="lbl">Davis Project for Peace Gallery</div>
     <h2 class="stitle">Bringing <em>digital access</em> to Umusalama Girls' School</h2>
     <p class="sbody">Photos from the ground in Garissa — setting up the computer lab, training students on their first laptops, and watching Umusalama Girls' School come online for the first time.</p>
     <button class="gallery-btn" onclick="openGalleryModal()">
       <i class="ti ti-photo" aria-hidden="true"></i>
       View gallery
-      <span class="gallery-btn-count" id="umu-gallery-btn-count"></span>
+      <span class="gallery-btn-count" id="davis-gallery-btn-count"></span>
     </button>
   </div>
 
@@ -760,11 +760,11 @@
     <div class="gallery-modal-header">
       <div>
         <div class="banner-label" style="margin-bottom:0.2rem;">Davis Project for Peace</div>
-        <div class="gallery-modal-title">Umusalama Girls' School <em>gallery</em></div>
+        <div class="gallery-modal-title">Davis Project for Peace <em>Gallery</em></div>
       </div>
       <button class="gallery-modal-close" onclick="closeGalleryModal()" aria-label="Close gallery">&times;</button>
     </div>
-    <div class="gallery-grid" id="umu-gallery"></div>
+    <div class="gallery-grid" id="davis-gallery"></div>
   </div>
 </div>
 
@@ -790,38 +790,46 @@
     window.scrollTo(0, 0);
   }
 
-  /* ---- Davis Project for Peace / UMU gallery ---- */
-  const umuPhotos = [
-    "WhatsApp%20Image%202026-06-29%20at%2016.11.05.jpeg",
-    "WhatsApp%20Image%202026-06-29%20at%2016.22.54%20(1).jpeg",
-    "WhatsApp%20Image%202026-06-29%20at%2016.22.54.jpeg",
-    "WhatsApp%20Image%202026-06-29%20at%2016.22.55%20(1).jpeg",
-    "WhatsApp%20Image%202026-06-29%20at%2016.22.55%20(2).jpeg",
-    "WhatsApp%20Image%202026-06-29%20at%2016.22.55.jpeg",
-    "WhatsApp%20Image%202026-06-29%20at%2016.22.57.jpeg",
-    "WhatsApp%20Image%202026-06-29%20at%2016.22.57%20(2).jpeg",
-    "WhatsApp%20Image%202026-06-29%20at%2016.22.57%20(1).jpeg",
-    "WhatsApp%20Image%202026-06-29%20at%2016.22.56.jpeg",
-    "WhatsApp%20Image%202026-06-29%20at%2016.22.56%20(2).jpeg",
-    "WhatsApp%20Image%202026-06-29%20at%2016.22.56%20(1).jpeg",
-    "WhatsApp%20Image%202026-06-29%20at%2016.22.58%20(1).jpeg",
-    "WhatsApp%20Image%202026-06-29%20at%2016.22.58%20(2).jpeg",
-    "WhatsApp%20Image%202026-06-29%20at%2016.22.58.jpeg",
-    "WhatsApp%20Image%202026-06-29%20at%2016.22.59%20(1).jpeg",
-    "WhatsApp%20Image%202026-06-29%20at%2016.22.59%20(2).jpeg",
-    "WhatsApp%20Image%202026-06-29%20at%2016.22.59.jpeg"
-  ].map((src, i) => ({ src, alt: `Davis Project for Peace digital literacy initiative — photo ${i + 1}` }));
+  /* ---- Davis Project for Peace Gallery ---- */
+  const davisPhotos = [
+    "WhatsApp Image 2026-06-29 at 16.11.05.jpeg",
+    "WhatsApp Image 2026-06-29 at 16.22.54 (1).jpeg",
+    "WhatsApp Image 2026-06-29 at 16.22.54.jpeg",
+    "WhatsApp Image 2026-06-29 at 16.22.55 (1).jpeg",
+    "WhatsApp Image 2026-06-29 at 16.22.55 (2).jpeg",
+    "WhatsApp Image 2026-06-29 at 16.22.55.jpeg",
+    "WhatsApp Image 2026-06-29 at 16.22.57.jpeg",
+    "WhatsApp Image 2026-06-29 at 16.22.57 (2).jpeg",
+    "WhatsApp Image 2026-06-29 at 16.22.57 (1).jpeg",
+    "WhatsApp Image 2026-06-29 at 16.22.56.jpeg",
+    "WhatsApp Image 2026-06-29 at 16.22.56 (2).jpeg",
+    "WhatsApp Image 2026-06-29 at 16.22.56 (1).jpeg",
+    "WhatsApp Image 2026-06-29 at 16.22.58 (1).jpeg",
+    "WhatsApp Image 2026-06-29 at 16.22.58 (2).jpeg",
+    "WhatsApp Image 2026-06-29 at 16.22.58.jpeg",
+    "WhatsApp Image 2026-06-29 at 16.22.59 (1).jpeg",
+    "WhatsApp Image 2026-06-29 at 16.22.59 (2).jpeg",
+    "WhatsApp Image 2026-06-29 at 16.22.59.jpeg",
+    "WhatsApp Image 2026-06-29 at 16.23.00 (1).jpeg",
+    "WhatsApp Image 2026-06-29 at 16.23.00.jpeg",
+    "WhatsApp Image 2026-06-29 at 16.23.04 (1).jpeg",
+    "WhatsApp Image 2026-06-29 at 16.23.04.jpeg",
+    "WhatsApp Image 2026-06-29 at 16.23.05 (1).jpeg",
+    "WhatsApp Image 2026-06-29 at 16.23.05 (2).jpeg",
+    "WhatsApp Image 2026-06-29 at 16.23.05.jpeg",
+    "WhatsApp Image 2026-06-29 at 16.23.10.jpeg"
+  ].map((src, i) => ({ src, alt: `Davis Project for Peace Gallery — photo ${i + 1}` }));
 
-  let umuIndex = 0;
+  let davisIndex = 0;
 
-  function renderUmuGallery() {
-    const grid = document.getElementById('umu-gallery');
-    grid.innerHTML = umuPhotos.map((p, i) =>
+  function renderDavisGallery() {
+    const grid = document.getElementById('davis-gallery');
+    grid.innerHTML = davisPhotos.map((p, i) =>
       `<div class="gallery-item" onclick="openLightbox(${i})">
          <img src="${p.src}" alt="${p.alt}" loading="lazy">
        </div>`
     ).join('');
-    document.getElementById('umu-gallery-btn-count').textContent = `(${umuPhotos.length})`;
+    document.getElementById('davis-gallery-btn-count').textContent = `(${davisPhotos.length})`;
   }
 
   function openGalleryModal() {
@@ -832,7 +840,7 @@
   }
 
   function openLightbox(i) {
-    umuIndex = i;
+    davisIndex = i;
     updateLightbox();
     document.getElementById('lightbox').classList.add('open');
   }
@@ -840,14 +848,14 @@
     document.getElementById('lightbox').classList.remove('open');
   }
   function stepLightbox(dir) {
-    umuIndex = (umuIndex + dir + umuPhotos.length) % umuPhotos.length;
+    davisIndex = (davisIndex + dir + davisPhotos.length) % davisPhotos.length;
     updateLightbox();
   }
   function updateLightbox() {
-    const p = umuPhotos[umuIndex];
+    const p = davisPhotos[davisIndex];
     document.getElementById('lightbox-img').src = p.src;
     document.getElementById('lightbox-img').alt = p.alt;
-    document.getElementById('lightbox-counter').textContent = `${umuIndex + 1} / ${umuPhotos.length}`;
+    document.getElementById('lightbox-counter').textContent = `${davisIndex + 1} / ${davisPhotos.length}`;
   }
   document.addEventListener('keydown', (e) => {
     const lb = document.getElementById('lightbox');
@@ -867,7 +875,7 @@
     if (e.target.id === 'gallery-modal') closeGalleryModal();
   });
 
-  renderUmuGallery();
+  renderDavisGallery();
 </script>
 </body>
 </html>
