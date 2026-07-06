@@ -169,6 +169,59 @@
   .lang-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 1rem; }
   .lang-pill { font-size: 30px; padding: 4px 14px; border: 0.5px solid rgba(196,133,90,0.3); color: rgba(245,237,224,0.5); }
 
+  /* GALLERY */
+  .gallery-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    margin-top: 1.5rem; padding: 0.7rem 1.6rem;
+    font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 500;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    background: #b5451b; color: #f5ede0; border: none; cursor: pointer;
+    transition: background 0.2s;
+  }
+  .gallery-btn:hover { background: #d4622a; }
+  .gallery-btn i.ti { font-size: 16px; }
+  .gallery-btn-count { font-weight: 300; opacity: 0.75; letter-spacing: 0.05em; text-transform: none; }
+
+  .gallery-modal {
+    position: fixed; inset: 0; z-index: 1100; background: rgba(8,6,4,0.97);
+    backdrop-filter: blur(6px); display: none; overflow-y: auto;
+  }
+  .gallery-modal.open { display: block; }
+  .gallery-modal-inner { max-width: 1100px; margin: 0 auto; padding: 3rem 2rem 4rem; }
+  .gallery-modal-header {
+    display: flex; align-items: flex-start; justify-content: space-between;
+    gap: 1.5rem; margin-bottom: 1.8rem; padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(196,133,90,0.15);
+  }
+  .gallery-modal-title { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; font-weight: 300; color: #f5ede0; line-height: 1.15; }
+  .gallery-modal-title em { font-style: italic; color: #c4855a; }
+  .gallery-modal-close {
+    flex-shrink: 0; width: 42px; height: 42px; display: flex; align-items: center; justify-content: center;
+    background: rgba(196,133,90,0.08); border: 0.5px solid rgba(196,133,90,0.35);
+    color: #f5ede0; font-size: 1.4rem; cursor: pointer; transition: background 0.2s, color 0.2s;
+  }
+  .gallery-modal-close:hover { background: #b5451b; }
+  .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: 4px; margin-top: 1.5rem; }
+  .gallery-item { position: relative; aspect-ratio: 1 / 1; overflow: hidden; background: #1a1410; cursor: pointer; border: 0.5px solid rgba(196,133,90,0.15); }
+  .gallery-item img { width: 100%; height: 100%; object-fit: cover; filter: sepia(8%) brightness(0.85); display: block; transition: filter 0.3s, transform 0.4s; }
+  .gallery-item:hover img { filter: sepia(0%) brightness(1); transform: scale(1.04); }
+  .gallery-item::after { content:''; position:absolute; inset:0; border: 1px solid transparent; transition: border-color 0.2s; }
+  .gallery-item:hover::after { border-color: #b5451b; }
+
+  .lightbox { position: fixed; inset: 0; z-index: 1000; background: rgba(8,6,4,0.94); backdrop-filter: blur(6px); display: none; align-items: center; justify-content: center; padding: 2rem; }
+  .lightbox.open { display: flex; }
+  .lightbox img { max-width: 88vw; max-height: 82vh; object-fit: contain; border: 0.5px solid rgba(196,133,90,0.3); }
+  .lightbox-close, .lightbox-prev, .lightbox-next {
+    position: absolute; background: rgba(15,13,10,0.7); border: 0.5px solid rgba(196,133,90,0.35);
+    color: #f5ede0; width: 42px; height: 42px; display: flex; align-items: center; justify-content: center;
+    cursor: pointer; font-size: 1.3rem; font-family: 'Jost', sans-serif; transition: background 0.2s, color 0.2s;
+  }
+  .lightbox-close:hover, .lightbox-prev:hover, .lightbox-next:hover { background: #b5451b; color: #f5ede0; }
+  .lightbox-close { top: 1.5rem; right: 1.5rem; }
+  .lightbox-prev { left: 1.5rem; top: 50%; transform: translateY(-50%); }
+  .lightbox-next { right: 1.5rem; top: 50%; transform: translateY(-50%); }
+  .lightbox-counter { position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(245,237,224,0.5); }
+
   /* FOOTER */
   footer { background: #080604; color: rgba(245,237,224,0.2); padding: 1.5rem 3rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.7rem; letter-spacing: 0.05em; }
 
@@ -188,6 +241,7 @@
     .nav-tabs button { padding: 0.5rem 0.6rem; font-size: 0.65rem; }
     .card-grid { grid-template-columns: 1fr; }
     .mosaic-3 { grid-template-columns: 1fr 1fr; }
+    .lightbox-prev, .lightbox-next { width: 36px; height: 36px; font-size: 1.1rem; }
   }
 </style>
 </head>
@@ -667,7 +721,20 @@
     </div>
   </div>
   <div class="divider"></div>
+
   <div class="section alt">
+    <div class="lbl">Davis Project for Peace · Gallery</div>
+    <h2 class="stitle">Bringing <em>digital access</em> to Umusalama Girls' School</h2>
+    <p class="sbody">Photos from the ground in Garissa — setting up the computer lab, training students on their first laptops, and watching Umusalama Girls' School come online for the first time.</p>
+    <button class="gallery-btn" onclick="openGalleryModal()">
+      <i class="ti ti-photo" aria-hidden="true"></i>
+      View gallery
+      <span class="gallery-btn-count" id="umu-gallery-btn-count"></span>
+    </button>
+  </div>
+
+  <div class="divider"></div>
+  <div class="section">
     <div class="lbl">Campus involvement</div>
     <h2 class="stitle">Dartmouth <em>organizations</em></h2>
     <p class="sbody">Active member of organizations reflecting my commitment to engineering, innovation, and community on campus.</p>
@@ -687,6 +754,29 @@
   </footer>
 </div>
 
+<!-- GALLERY MODAL -->
+<div class="gallery-modal" id="gallery-modal">
+  <div class="gallery-modal-inner">
+    <div class="gallery-modal-header">
+      <div>
+        <div class="banner-label" style="margin-bottom:0.2rem;">Davis Project for Peace</div>
+        <div class="gallery-modal-title">Umusalama Girls' School <em>gallery</em></div>
+      </div>
+      <button class="gallery-modal-close" onclick="closeGalleryModal()" aria-label="Close gallery">&times;</button>
+    </div>
+    <div class="gallery-grid" id="umu-gallery"></div>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close">&times;</button>
+  <button class="lightbox-prev" onclick="stepLightbox(-1)" aria-label="Previous photo">&lsaquo;</button>
+  <img id="lightbox-img" src="" alt="">
+  <button class="lightbox-next" onclick="stepLightbox(1)" aria-label="Next photo">&rsaquo;</button>
+  <div class="lightbox-counter" id="lightbox-counter"></div>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" type="text/css"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 <script>
@@ -699,6 +789,69 @@
     if (btn) btn.classList.add('active');
     window.scrollTo(0, 0);
   }
+
+  /* ---- Davis Project for Peace / UMU gallery ---- */
+  const umuPhotos = Array.from({ length: 18 }, (_, i) => {
+    const n = String(i + 1).padStart(2, '0');
+    return { src: `gallery-umu/umu-${n}.jpeg`, alt: `Davis Project for Peace digital literacy initiative — photo ${i + 1}` };
+  });
+
+  let umuIndex = 0;
+
+  function renderUmuGallery() {
+    const grid = document.getElementById('umu-gallery');
+    grid.innerHTML = umuPhotos.map((p, i) =>
+      `<div class="gallery-item" onclick="openLightbox(${i})">
+         <img src="${p.src}" alt="${p.alt}" loading="lazy">
+       </div>`
+    ).join('');
+    document.getElementById('umu-gallery-btn-count').textContent = `(${umuPhotos.length})`;
+  }
+
+  function openGalleryModal() {
+    document.getElementById('gallery-modal').classList.add('open');
+  }
+  function closeGalleryModal() {
+    document.getElementById('gallery-modal').classList.remove('open');
+  }
+
+  function openLightbox(i) {
+    umuIndex = i;
+    updateLightbox();
+    document.getElementById('lightbox').classList.add('open');
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+  }
+  function stepLightbox(dir) {
+    umuIndex = (umuIndex + dir + umuPhotos.length) % umuPhotos.length;
+    updateLightbox();
+  }
+  function updateLightbox() {
+    const p = umuPhotos[umuIndex];
+    document.getElementById('lightbox-img').src = p.src;
+    document.getElementById('lightbox-img').alt = p.alt;
+    document.getElementById('lightbox-counter').textContent = `${umuIndex + 1} / ${umuPhotos.length}`;
+  }
+  document.addEventListener('keydown', (e) => {
+    const lb = document.getElementById('lightbox');
+    if (lb.classList.contains('open')) {
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') stepLightbox(-1);
+      if (e.key === 'ArrowRight') stepLightbox(1);
+      return;
+    }
+    const gm = document.getElementById('gallery-modal');
+    if (gm.classList.contains('open') && e.key === 'Escape') closeGalleryModal();
+  });
+  document.getElementById('lightbox').addEventListener('click', (e) => {
+    if (e.target.id === 'lightbox') closeLightbox();
+  });
+  document.getElementById('gallery-modal').addEventListener('click', (e) => {
+    if (e.target.id === 'gallery-modal') closeGalleryModal();
+  });
+
+  renderUmuGallery();
 </script>
 </body>
 </html>
