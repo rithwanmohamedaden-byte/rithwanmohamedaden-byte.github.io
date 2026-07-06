@@ -791,10 +791,26 @@
   }
 
   /* ---- Davis Project for Peace / UMU gallery ---- */
-  const umuPhotos = Array.from({ length: 18 }, (_, i) => {
-    const n = String(i + 1).padStart(2, '0');
-    return { src: `gallery-umu/umu-${n}.jpeg`, alt: `Davis Project for Peace digital literacy initiative — photo ${i + 1}` };
-  });
+  const umuPhotos = [
+    "WhatsApp%20Image%202026-06-29%20at%2016.11.05.jpeg",
+    "WhatsApp%20Image%202026-06-29%20at%2016.22.54%20(1).jpeg",
+    "WhatsApp%20Image%202026-06-29%20at%2016.22.54.jpeg",
+    "WhatsApp%20Image%202026-06-29%20at%2016.22.55%20(1).jpeg",
+    "WhatsApp%20Image%202026-06-29%20at%2016.22.55%20(2).jpeg",
+    "WhatsApp%20Image%202026-06-29%20at%2016.22.55.jpeg",
+    "WhatsApp%20Image%202026-06-29%20at%2016.22.57.jpeg",
+    "WhatsApp%20Image%202026-06-29%20at%2016.22.57%20(2).jpeg",
+    "WhatsApp%20Image%202026-06-29%20at%2016.22.57%20(1).jpeg",
+    "WhatsApp%20Image%202026-06-29%20at%2016.22.56.jpeg",
+    "WhatsApp%20Image%202026-06-29%20at%2016.22.56%20(2).jpeg",
+    "WhatsApp%20Image%202026-06-29%20at%2016.22.56%20(1).jpeg",
+    "WhatsApp%20Image%202026-06-29%20at%2016.22.58%20(1).jpeg",
+    "WhatsApp%20Image%202026-06-29%20at%2016.22.58%20(2).jpeg",
+    "WhatsApp%20Image%202026-06-29%20at%2016.22.58.jpeg",
+    "WhatsApp%20Image%202026-06-29%20at%2016.22.59%20(1).jpeg",
+    "WhatsApp%20Image%202026-06-29%20at%2016.22.59%20(2).jpeg",
+    "WhatsApp%20Image%202026-06-29%20at%2016.22.59.jpeg"
+  ].map((src, i) => ({ src, alt: `Davis Project for Peace digital literacy initiative — photo ${i + 1}` }));
 
   let umuIndex = 0;
 
