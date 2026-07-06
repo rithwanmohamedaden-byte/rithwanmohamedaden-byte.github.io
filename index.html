@@ -19,17 +19,17 @@
     background: rgba(15,13,10,0.97); backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(196,133,90,0.15);
   }
-  .nav-name { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; color: #c4855a; letter-spacing: 0.02em; cursor: pointer; }
+  .nav-name { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; color: #c4855a; letter-spacing: 0.02em; cursor: pointer; text-decoration: none; }
   .nav-tabs { display: flex; gap: 0.2rem; list-style: none; }
-  .nav-tabs button {
+  .nav-tabs a {
     font-family: 'Jost', sans-serif; font-size: 1.2rem; font-weight: 500;
     letter-spacing: 0.12em; text-transform: uppercase; color: rgba(245,237,224,0.45);
     background: none; border: none; border-bottom: 1.5px solid transparent;
-    cursor: pointer; padding: 0.5rem 1rem;
+    cursor: pointer; padding: 0.5rem 1rem; text-decoration: none; display: inline-block;
     transition: color 0.2s, border-color 0.2s;
   }
-  .nav-tabs button:hover { color: #c4855a; }
-  .nav-tabs button.active { color: #c4855a; border-bottom-color: #b5451b; }
+  .nav-tabs a:hover { color: #c4855a; }
+  .nav-tabs a.active { color: #c4855a; border-bottom-color: #b5451b; }
 
   /* TABS */
   .tab-page { display: none; padding-top: 4rem; }
@@ -63,9 +63,9 @@
   .hero-name em { font-style: italic; color: #c4855a; }
   .hero-desc { font-size: 30px; font-weight: 300; line-height: 1.9; color: rgba(245,237,224,0.55); max-width: 36ch; margin-bottom: 2rem; }
   .hero-btns { display: flex; gap: 8px; flex-wrap: wrap; }
-  .btn-p { padding: 0.55rem 1.4rem; font-size: 10px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; background: #b5451b; color: #f5ede0; border: none; cursor: pointer; font-family: 'Jost', sans-serif; transition: background 0.2s; }
+  .btn-p { padding: 0.55rem 1.4rem; font-size: 10px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; background: #b5451b; color: #f5ede0; border: none; cursor: pointer; font-family: 'Jost', sans-serif; transition: background 0.2s; text-decoration: none; display: inline-block; }
   .btn-p:hover { background: #d4622a; }
-  .btn-s { padding: 0.55rem 1.4rem; font-size: 10px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; background: transparent; color: #c4855a; border: 1px solid rgba(196,133,90,0.4); cursor: pointer; font-family: 'Jost', sans-serif; transition: background 0.2s; }
+  .btn-s { padding: 0.55rem 1.4rem; font-size: 10px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; background: transparent; color: #c4855a; border: 1px solid rgba(196,133,90,0.4); cursor: pointer; font-family: 'Jost', sans-serif; transition: background 0.2s; text-decoration: none; display: inline-block; }
   .btn-s:hover { background: rgba(196,133,90,0.08); }
   .hero-photo { overflow: hidden; position: relative; background: #1a1410; }
   .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 15%; filter: sepia(8%) contrast(1.05); display: block; }
@@ -238,7 +238,7 @@
     footer { flex-direction: column; gap: 0.4rem; text-align: center; padding: 1.2rem; }
   }
   @media(max-width:600px) {
-    .nav-tabs button { padding: 0.5rem 0.6rem; font-size: 0.65rem; }
+    .nav-tabs a { padding: 0.5rem 0.6rem; font-size: 0.65rem; }
     .card-grid { grid-template-columns: 1fr; }
     .mosaic-3 { grid-template-columns: 1fr 1fr; }
     .lightbox-prev, .lightbox-next { width: 36px; height: 36px; font-size: 1.1rem; }
@@ -249,13 +249,13 @@
 
 <!-- NAV -->
 <nav>
-  <span class="nav-name" onclick="showTab('me')">Rithwan Mohamed Aden</span>
+  <a href="#me" class="nav-name">Rithwan Mohamed Aden</a>
   <ul class="nav-tabs">
-    <li><button onclick="showTab('me')" id="tab-me" class="active">Me</button></li>
-    <li><button onclick="showTab('cs')" id="tab-cs">CS</button></li>
-    <li><button onclick="showTab('biomed')" id="tab-biomed">Biomedical</button></li>
-    <li><button onclick="showTab('research')" id="tab-research">Research</button></li>
-    <li><button onclick="showTab('community')" id="tab-community">Community</button></li>
+    <li><a href="#me" id="tab-me" class="active">Me</a></li>
+    <li><a href="#cs" id="tab-cs">CS</a></li>
+    <li><a href="#biomed" id="tab-biomed">Biomedical</a></li>
+    <li><a href="#research" id="tab-research">Research</a></li>
+    <li><a href="#community" id="tab-community">Community</a></li>
   </ul>
 </nav>
 
@@ -268,9 +268,9 @@
       <h1 class="hero-name">Rithwan<br><em>Mohamed</em><br>Aden</h1>
       <p class="hero-desc">Passionate about education, technology, and health — building solutions at the intersection of all three for communities that need them most.</p>
       <div class="hero-btns">
-        <button class="btn-p" onclick="showTab('cs')">CS</button>
-        <button class="btn-s" onclick="showTab('biomed')">Biomedical</button>
-        <button class="btn-s" onclick="showTab('community')">Community</button>
+        <a href="#cs" class="btn-p">CS</a>
+        <a href="#biomed" class="btn-s">Biomedical</a>
+        <a href="#community" class="btn-s">Community</a>
       </div>
     </div>
     <div class="hero-photo">
@@ -764,6 +764,12 @@
       </div>
       <button class="gallery-modal-close" onclick="closeGalleryModal()" aria-label="Close gallery">&times;</button>
     </div>
+    <p class="sbody" style="max-width:75ch;">
+      In February 2026, I was awarded a competitive Davis Projects for Peace grant to run a summer digital access initiative with the UMU Youth Organization at Umusalama Girls' Secondary School in Garissa, Kenya. Many of the students at Umusalama had never used a computer before — the school had no functioning computer lab and no consistent access to digital tools of any kind. Over the course of the project, our team set up a working computer lab from the ground up: sourcing and installing desktops and laptops, wiring the classroom, and building a curriculum to teach digital literacy from scratch — covering everything from basic navigation and typing to internet research and productivity software.
+    </p>
+    <p class="sbody" style="max-width:75ch;">
+      The goal was simple but urgent: give girls in an underserved, historically overlooked community the same first exposure to technology that students elsewhere take for granted, and show them that digital fluency — and the opportunities it opens up — belongs to them too. The photos below document that process, from unpacking the first machines to watching students open a browser for the very first time.
+    </p>
     <div class="gallery-grid" id="davis-gallery"></div>
   </div>
 </div>
@@ -780,15 +786,25 @@
 <script src="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" type="text/css"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 <script>
+  const VALID_TABS = ['me', 'cs', 'biomed', 'research', 'community'];
+
   function showTab(name) {
     document.querySelectorAll('.tab-page').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.nav-tabs button').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.nav-tabs a').forEach(b => b.classList.remove('active'));
     const page = document.getElementById('page-' + name);
     if (page) page.classList.add('active');
     const btn = document.getElementById('tab-' + name);
     if (btn) btn.classList.add('active');
     window.scrollTo(0, 0);
   }
+
+  function handleHashChange() {
+    const hash = window.location.hash.slice(1);
+    showTab(VALID_TABS.includes(hash) ? hash : 'me');
+  }
+
+  window.addEventListener('hashchange', handleHashChange);
+  window.addEventListener('DOMContentLoaded', handleHashChange);
 
   /* ---- Davis Project for Peace Gallery ---- */
   const davisPhotos = [
